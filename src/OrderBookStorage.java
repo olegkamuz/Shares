@@ -21,6 +21,9 @@ public class OrderBookStorage {
     }
 
     public Integer getSizeAtPrice(Integer price) {
+        if (!orders.containsKey(price)) {
+            return null;
+        }
         return orders.get(price);
     }
 }

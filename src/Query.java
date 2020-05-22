@@ -29,8 +29,9 @@ public class Query implements FindCriteria {
                 }
             }
             s2.close();
-            int size = (OrderBookStorage.getInstance()).getSizeAtPrice(price);
-            writeToOutputFile(size);
+            if((OrderBookStorage.getInstance()).getSizeAtPrice(price) != null) {
+                writeToOutputFile((OrderBookStorage.getInstance()).getSizeAtPrice(price));
+            }
         }
     }
 

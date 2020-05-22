@@ -10,7 +10,8 @@ public class Main {
 
     private static void scanningFile() {
         try {
-            FileInputStream fis = new FileInputStream("input.txt");
+//            FileInputStream fis = new FileInputStream("input.txt");
+            FileInputStream fis = new FileInputStream("inputRandom.txt");
             Scanner sc = new Scanner(fis);
             while (sc.hasNextLine()) {
                 findAction(sc.nextLine());
