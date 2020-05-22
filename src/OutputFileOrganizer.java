@@ -10,10 +10,14 @@ public class OutputFileOrganizer {
         return instance;
     }
     public void add (int size){
-        sb.append("" + size + "\n");
+        sb.append(size);
+        sb.append("\n");
     }
     public void add (int price, int size){
-        sb.append(price + "," + size + "\n");
+        sb.append(price);
+        sb.append(",");
+        sb.append(size);
+        sb.append("\n");
     }
     public void createOutputFile(){
         File f = new File("output.txt");
@@ -21,7 +25,6 @@ public class OutputFileOrganizer {
             FileWriter myWriter = new FileWriter("output.txt");
             myWriter.write(sb.toString());
             myWriter.close();
-//            System.out.println(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

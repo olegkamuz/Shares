@@ -1,7 +1,7 @@
 public class OrderBookAsk implements OrderBook{
     private static OrderBookAsk instance = new OrderBookAsk();
-    private int price = Integer.MAX_VALUE;
-    private int size = Integer.MAX_VALUE;
+    private int price = -1;
+    private int size = -1;
     private OrderBookAsk() {}
     public static OrderBookAsk getInstance() {
         return instance;
@@ -27,6 +27,10 @@ public class OrderBookAsk implements OrderBook{
     }
     @Override
     public void setPriceAndSize(int price, int size) {
+        if(this.price == -1){
+            this.price = price;
+            this.size = size;
+        }
         if(price < this.price && size != 0) {
             this.price = price;
             this.size = size;

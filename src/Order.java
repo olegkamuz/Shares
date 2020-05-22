@@ -27,15 +27,19 @@ public class Order implements FindCriteria {
         if (orderAction.equals("sell")) {
             if (orderBookBid.bestExists()) {
                 int newSize = orderBookBid.getSize() - size;
-                orderBookBid.setSize(newSize);
-                orderBookStorage.updateSizeWherePrice(orderBookBid.getPrice(), newSize);
+                if(newSize >= 0) {
+                    orderBookBid.setSize(newSize);
+                    orderBookStorage.updateSizeWherePrice(orderBookBid.getPrice(), newSize);
+                }
             }
         }
         if (orderAction.equals("buy")) {
             if (orderBookAsk.bestExists()) {
                 int newSize = orderBookAsk.getSize() - size;
-                orderBookAsk.setSize(newSize);
-                orderBookStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+                if(newSize >= 0) {
+                    orderBookAsk.setSize(newSize);
+                    orderBookStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+                }
             }
         }
     }

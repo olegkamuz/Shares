@@ -5,7 +5,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        long d1 = System.currentTimeMillis();
         scanningFile();
+        long d2 = System.currentTimeMillis();
+        System.out.println("Time: " + (d2 - d1));
     }
 
     private static void scanningFile() {
