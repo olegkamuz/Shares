@@ -16,6 +16,7 @@ public class Main {
                 findAction(sc.nextLine());
             }
             sc.close();
+            (OutputFileOrganizer.getInstance()).createOutputFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,10 +37,4 @@ public class Main {
             fi.doAction("o", line);
         }
     }
-
-
-
-
-
-
 }

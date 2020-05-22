@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
-public class Order implements FindCriteria{
-    private static String ACTION = "o";
-    private static int price = -1;
+public class Order implements FindCriteria {
     private static int size = -1;
     private static String orderAction;
 
@@ -20,29 +18,25 @@ public class Order implements FindCriteria{
         s2.useDelimiter(",");
         while (s2.hasNext()) {
             if (s2.hasNextInt()) {
-                price = s2.nextInt();
+                size = s2.nextInt();
             } else {
                 s2.next();
             }
         }
         s2.close();
-        if(orderAction.equals("sell")){
-            if(orderBookBid.bestExists()){
-               int newSize = orderBookBid.getSize() - size;
+        if (orderAction.equals("sell")) {
+            if (orderBookBid.bestExists()) {
+                int newSize = orderBookBid.getSize() - size;
                 orderBookBid.setSize(newSize);
-                orderBookStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+                orderBookStorage.updateSizeWherePrice(orderBookBid.getPrice(), newSize);
             }
         }
-        if(orderAction.equals("buy")){
-            if(orderBookAsk.bestExists()){
+        if (orderAction.equals("buy")) {
+            if (orderBookAsk.bestExists()) {
                 int newSize = orderBookAsk.getSize() - size;
                 orderBookAsk.setSize(newSize);
                 orderBookStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
             }
         }
-        printOrder();
-    }
-    private void printOrder() {
-        System.out.println("action: " + Order.ACTION + " orderAction: " + orderAction + " size: " + size);
     }
 }

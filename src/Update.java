@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Update implements FindCriteria {
-    private static String ACTION = "u";
     private int price = -1;
     private int size = -1;
     private String type = "";
@@ -24,11 +23,6 @@ public class Update implements FindCriteria {
         }
         s2.close();
         update();
-        printUpdate();
-    }
-
-    private void printUpdate() {
-        System.out.println("action: " + Update.ACTION + " price: " + price + " size: " + size + " type: " + type);
     }
     private void update() {
         if(type.equals("bid")){

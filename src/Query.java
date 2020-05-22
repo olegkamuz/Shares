@@ -14,11 +14,9 @@ public class Query implements FindCriteria {
         queryAction = s1.findInLine("(best_bid|best_ask|size)");
         if (queryAction.equals("best_bid")) {
             writeToOutputFile(orderBookBid);
-            printQuery();
         }
         if (queryAction.equals("best_ask")) {
             writeToOutputFile(orderBookAsk);
-            printQuery();
         }
         if (queryAction.equals("size")) {
             Scanner s2 = new Scanner(line);
@@ -50,13 +48,5 @@ public class Query implements FindCriteria {
         if (ob.bestExists()) {
             outputFileOrganizer.add(ob.getPrice(), ob.getSize());
         }
-    }
-
-    private void printQuery() {
-        System.out.println("action: " + Query.ACTION + " queryAction: " + queryAction);
-    }
-
-    private void printQueryPrice() {
-        System.out.println("action: " + Query.ACTION + " queryAction: " + queryAction + " price: " + price);
     }
 }

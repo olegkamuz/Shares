@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 
 public class OrderBookStorage {
 
@@ -18,7 +17,7 @@ public class OrderBookStorage {
     }
 
     public void updateSizeWherePrice(int price, int size) {
-        orders.replace(orders.get(price), size);
+        orders.replace(price, size);
     }
 
     public Integer getSizeAtPrice(Integer price) {

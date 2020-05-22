@@ -1,8 +1,7 @@
 public class OrderBookAsk implements OrderBook{
     private static OrderBookAsk instance = new OrderBookAsk();
-    private static String TYPE = "ask";
-    private int price;
-    private int size;
+    private int price = Integer.MAX_VALUE;
+    private int size = Integer.MAX_VALUE;
     private OrderBookAsk() {}
     public static OrderBookAsk getInstance() {
         return instance;
@@ -37,9 +36,4 @@ public class OrderBookAsk implements OrderBook{
     public int getSize() {
         return size;
     }
-
-    public void print(){
-        System.out.println("price: " + price + " size " + size);
-    }
-
 }
