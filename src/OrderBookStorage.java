@@ -4,7 +4,7 @@ import java.util.Map;
 public class OrderBookStorage {
 
     private static OrderBookStorage instance = new OrderBookStorage();
-    private HashMap<Integer,Integer> orders = new HashMap<Integer, Integer>();
+    private HashMap<Integer, Integer> orders = new HashMap<Integer, Integer>();
 
     private OrderBookStorage() {
     }
@@ -15,6 +15,10 @@ public class OrderBookStorage {
 
     public void add(int price, int size) {
         this.orders.put(price, size);
+    }
+
+    public void updateSizeWherePrice(int price, int size) {
+        orders.replace(orders.get(price), size);
     }
 
     public Integer getSizeAtPrice(Integer price) {

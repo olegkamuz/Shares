@@ -14,8 +14,17 @@ public class OrderBookAsk implements OrderBook{
         }
         return false;
     }
+    @Override
     public int getPrice() {
         return price;
+    }
+    @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    @Override
+    public void setSize(int size) {
+        this.size = size;
     }
     @Override
     public void setPriceAndSize(int price, int size) {

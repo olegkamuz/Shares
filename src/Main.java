@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        scanningFile(); // todo use pattern strategy
+        scanningFile();
     }
 
     private static void scanningFile() {

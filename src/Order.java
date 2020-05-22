@@ -4,9 +4,12 @@ public class Order implements FindCriteria{
     private static String ACTION = "o";
     private static int price = -1;
     private static int size = -1;
-    private static String type = "";
-    private static String queryAction = "";
     private static String orderAction;
+
+    private OrderBookBid orderBookBid = OrderBookBid.getInstance();
+    private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
+
+    private OrderBookStorage orderBookStorage = OrderBookStorage.getInstance();
 
     @Override
     public void findCriteria(String line) {
@@ -17,12 +20,26 @@ public class Order implements FindCriteria{
         s2.useDelimiter(",");
         while (s2.hasNext()) {
             if (s2.hasNextInt()) {
-                size = s2.nextInt();
+                price = s2.nextInt();
             } else {
                 s2.next();
             }
         }
         s2.close();
+        if(orderAction.equals("sell")){
+            if(orderBookBid.bestExists()){
+               int newSize = orderBookBid.getSize() - size;
+                orderBookBid.setSize(newSize);
+                orderBookStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+            }
+        }
+        if(orderAction.equals("buy")){
+            if(orderBookAsk.bestExists()){
+                int newSize = orderBookAsk.getSize() - size;
+                orderBookAsk.setSize(newSize);
+                orderBookStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+            }
+        }
         printOrder();
     }
     private void printOrder() {

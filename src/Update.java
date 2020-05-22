@@ -32,17 +32,27 @@ public class Update implements FindCriteria {
     }
     private void update() {
         if(type.equals("bid")){
-            OrderBook ob = OrderBookBid.getInstance();
-            ob.setPriceAndSize(price, size);
+            saveToOrderBookBid();
             orderBookStorage.add(price,size);
         }
         if(type.equals("ask")){
-            OrderBook ob = OrderBookAsk.getInstance();
-            ob.setPriceAndSize(price, size);
-            orderBookStorage.add(price,size);
+            saveToOrderBookAsk();
+            saveToOrderBookStorage();
         }
         if(type.equals("spread")){
-            orderBookStorage.add(price,size);
+            saveToOrderBookStorage();
         }
+    }
+
+    private void saveToOrderBookStorage() {
+        orderBookStorage.add(price,size);
+    }
+
+    private void saveToOrderBookAsk() {
+        (OrderBookAsk.getInstance()).setPriceAndSize(price, size);
+    }
+
+    private void saveToOrderBookBid() {
+        (OrderBookBid.getInstance()).setPriceAndSize(price, size);
     }
 }

@@ -26,6 +26,14 @@ public class OrderBookBid implements OrderBook{
         return price;
     }
     @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    @Override
+    public void setSize(int size) {
+        this.size = size;
+    }
+    @Override
     public int getSize() {
         return size;
     }
