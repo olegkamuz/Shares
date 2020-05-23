@@ -1,10 +1,15 @@
 import java.util.Scanner;
 
 public class Update implements FindCriteria {
+    private static Update instance = new Update();
     private int price = -1;
     private int size = -1;
     private String type = "";
     private OrderBookStorage orderBookStorage = OrderBookStorage.getInstance();
+    private Update(){}
+    public static Update getInstance() {
+        return instance;
+    }
 
     @Override
     public void findCriteria(String line) {

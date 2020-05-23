@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Order implements FindCriteria {
+    private static Order instance = new Order();
     private static int size = -1;
     private static String orderAction;
 
@@ -8,6 +9,10 @@ public class Order implements FindCriteria {
     private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
 
     private OrderBookStorage orderBookStorage = OrderBookStorage.getInstance();
+    private Order(){}
+    public static Order getInstance(){
+        return instance;
+    }
 
     @Override
     public void findCriteria(String line) {

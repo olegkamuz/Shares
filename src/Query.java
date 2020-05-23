@@ -1,12 +1,17 @@
 import java.util.Scanner;
 
 public class Query implements FindCriteria {
+    private static Query instance = new Query();
     private static String ACTION = "q";
     private String queryAction = "";
     private int price = -1;
     private OutputFileOrganizer outputFileOrganizer = OutputFileOrganizer.getInstance();
     private OrderBookBid orderBookBid = OrderBookBid.getInstance();
     private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
+    private Query(){}
+    public static Query getInstance() {
+        return instance;
+    }
 
     @Override
     public void findCriteria(String line) {

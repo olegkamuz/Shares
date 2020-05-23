@@ -1,3 +1,3 @@
-public abstract class AbstractFactory {
+public abstract class AbstractDispatcher {
     abstract void doAction(String action, String line);
 }

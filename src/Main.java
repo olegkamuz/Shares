@@ -30,7 +30,7 @@ public class Main {
         Scanner s1 = new Scanner(line);
         String action = s1.findInLine("(u|q|o)");
         s1.close();
-        FactoryImpl fi = new FactoryImpl();
+        Dispatcher fi = new Dispatcher();
         if (action.equals("u")) {
             fi.doAction("u", line);
         }
