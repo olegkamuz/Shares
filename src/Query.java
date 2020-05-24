@@ -1,14 +1,11 @@
 public class Query {
-    private static Query instance = new Query();
-    private static String ACTION = "q";
-    private String queryAction = "";
-    private int price = -1;
-    private OutputFileOrganizer outputFileOrganizer = OutputFileOrganizer.getInstance();
-    private OrderBookBid orderBookBid = OrderBookBid.getInstance();
-    private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
-    private OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
-    private OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
-    private OrderBookSpreadStorage orderBookSpreadStorage = OrderBookSpreadStorage.getInstance();
+    private static final Query instance = new Query();
+    private final OutputFileOrganizer outputFileOrganizer = OutputFileOrganizer.getInstance();
+    private final OrderBookBid orderBookBid = OrderBookBid.getInstance();
+    private final OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
+    private final OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
+    private final OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
+    private final OrderBookSpreadStorage orderBookSpreadStorage = OrderBookSpreadStorage.getInstance();
 
     private Query() {
     }

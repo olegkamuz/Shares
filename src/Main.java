@@ -5,8 +5,6 @@ import java.util.Scanner;
 import java.util.regex.MatchResult;
 
 public class Main {
-    private String[] lines;
-
     public static void main(String[] args) {
         long d1 = System.currentTimeMillis();
         scanningFile();
@@ -16,9 +14,7 @@ public class Main {
 
     private static void scanningFile() {
         try {
-//            FileInputStream fis = new FileInputStream("input.txt");
-            FileInputStream fis = new FileInputStream("inputRandom.txt");
-//            FileInputStream fis = new FileInputStream("inputSpecialCase.txt");
+            FileInputStream fis = new FileInputStream("input.txt");
 
             Scanner sc = new Scanner(fis);
             String pattern = "(?:(u|q|o)[,](\\d+)[,](\\d+)[,](bid|ask|spread))|(?:(u|q|o)[,](?:(best_bid|best_ask)|(?:(size)[,](\\d+))))|(?:(u|q|o)[),](buy|sell)[,](\\d+))";

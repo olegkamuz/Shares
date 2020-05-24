@@ -1,13 +1,10 @@
 public class Update {
-    private static Update instance = new Update();
-    private int price = -1;
-    private int size = -1;
-    private String type = "";
-    private OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
-    private OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
-    private OrderBookSpreadStorage orderBookSpreadStorage = OrderBookSpreadStorage.getInstance();
-    private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
-    private OrderBookBid orderBookBid = OrderBookBid.getInstance();
+    private static final Update instance = new Update();
+    private final OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
+    private final OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
+    private final OrderBookSpreadStorage orderBookSpreadStorage = OrderBookSpreadStorage.getInstance();
+    private final OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
+    private final OrderBookBid orderBookBid = OrderBookBid.getInstance();
 
     private Update() {
     }

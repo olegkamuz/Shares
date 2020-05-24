@@ -1,12 +1,9 @@
 public class Order {
-    private static Order instance = new Order();
-    private static int size = -1;
-
-    private OrderBookBid orderBookBid = OrderBookBid.getInstance();
-    private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
-
-    private OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
-    private OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
+    private static final Order instance = new Order();
+    private final OrderBookBid orderBookBid = OrderBookBid.getInstance();
+    private final OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
+    private final OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
+    private final OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
 
     private Order() {
     }
@@ -21,12 +18,10 @@ public class Order {
                 int newSize = orderBookBid.getSize() - size;
                 if (newSize <= 0) {
                     newSize = 0;
-                    orderBookBidStorage.updateSizeWherePrice(orderBookBid.getPrice(), newSize);
-                    orderBookBid.setSize(newSize);
+                    saveToBid(newSize);
                 }
                 if (newSize > 0) {
-                    orderBookBid.setSize(newSize);
-                    orderBookBidStorage.updateSizeWherePrice(orderBookBid.getPrice(), newSize);
+                    saveToBid(newSize);
                 }
             }
         }
@@ -35,14 +30,23 @@ public class Order {
                 int newSize = orderBookAsk.getSize() - size;
                 if (newSize <= 0) {
                     newSize = 0;
-                    orderBookAskStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
-                    orderBookAsk.setSize(newSize);
+                    saveToAsk(newSize);
                 }
                 if (newSize > 0) {
-                    orderBookAsk.setSize(newSize);
-                    orderBookBidStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+                    saveToAsk(newSize);
                 }
             }
         }
     }
+
+    private void saveToBid(int newSize) {
+        orderBookBidStorage.updateSizeWherePrice(orderBookBid.getPrice(), newSize);
+        orderBookBid.setSize(newSize);
+    }
+
+    private void saveToAsk(int newSize) {
+        orderBookAskStorage.updateSizeWherePrice(orderBookAsk.getPrice(), newSize);
+        orderBookAsk.setSize(newSize);
+    }
+
 }
