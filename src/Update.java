@@ -1,6 +1,4 @@
-import java.util.Scanner;
-
-public class Update implements FindCriteria {
+public class Update {
     private static Update instance = new Update();
     private int price = -1;
     private int size = -1;
@@ -10,40 +8,38 @@ public class Update implements FindCriteria {
     private OrderBookSpreadStorage orderBookSpreadStorage = OrderBookSpreadStorage.getInstance();
     private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
     private OrderBookBid orderBookBid = OrderBookBid.getInstance();
-    private Update(){}
+
+    private Update() {
+    }
+
     public static Update getInstance() {
         return instance;
     }
 
-    @Override
-    public void findCriteria(String line) {
-        Scanner s1 = new Scanner(line);
-        type = s1.findInLine("(bid|ask|spread)");
-        s1.close();
-        Scanner s2 = new Scanner(line);
-        s2.useDelimiter(",");
-        while (s2.hasNext()) {
-            if (s2.hasNextInt()) {
-                price = s2.nextInt();
-                size = s2.nextInt();
-            } else {
-                s2.next();
-            }
+    public void findCriteria(int price, int size, String type) {
+        if (type.equals("bid")) {
+            updateBid(price, size);
         }
-        s2.close();
-        update();
+        if (type.equals("ask")) {
+            updateAsk(price, size);
+        }
+        if (type.equals("spread")) {
+            updateSpread(price, size);
+        }
+
     }
-    private void update() {
-        if(type.equals("bid")){
-            orderBookBid.setPriceAndSize(price, size);
-            orderBookBidStorage.add(price,size);
-        }
-        if(type.equals("ask")){
-            orderBookAsk.setPriceAndSize(price, size);
-            orderBookAskStorage.add(price,size);
-        }
-        if(type.equals("spread")){
-            orderBookSpreadStorage.add(price,size);
-        }
+
+    private void updateBid(int price, int size) {
+        orderBookBid.setPriceAndSize(price, size);
+        orderBookBidStorage.add(price, size);
+    }
+
+    private void updateAsk(int price, int size) {
+        orderBookAsk.setPriceAndSize(price, size);
+        orderBookAskStorage.add(price, size);
+    }
+
+    private void updateSpread(int price, int size) {
+        orderBookSpreadStorage.add(price, size);
     }
 }

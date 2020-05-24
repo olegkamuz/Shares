@@ -27,9 +27,10 @@ public class OrderBookAskStorage {
         }
         return orders.get(price);
     }
+
     public void findNewBestAsk() {
-        for(Map.Entry<Integer,Integer> entry : orders.entrySet()) {
-            if(entry.getValue() > 0){
+        for (Map.Entry<Integer, Integer> entry : orders.entrySet()) {
+            if (entry.getValue() > 0) {
                 (OrderBookAsk.getInstance()).setNewBest(entry.getKey(), entry.getValue());
                 break;
             }

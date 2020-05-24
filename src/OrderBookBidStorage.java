@@ -28,14 +28,14 @@ public class OrderBookBidStorage {
     }
 
     public void findNewBestBid() {
-        for(int key : orders.descendingKeySet()){
+        for (int key : orders.descendingKeySet()) {
             boolean noBest = true;
-            if(orders.get(key) > 0){
+            if (orders.get(key) > 0) {
                 (OrderBookBid.getInstance()).setNewBest(key, orders.get(key));
                 noBest = false;
                 break;
             }
-            if(noBest){
+            if (noBest) {
                 (OrderBookBid.getInstance()).resetBest();
             }
         }

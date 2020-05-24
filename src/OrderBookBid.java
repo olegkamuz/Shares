@@ -31,7 +31,6 @@ public class OrderBookBid implements OrderBook {
         return price;
     }
 
-    @Override
     public void setPrice(int price) {
         this.price = price;
     }
@@ -39,7 +38,7 @@ public class OrderBookBid implements OrderBook {
     @Override
     public void setSize(int size) {
         this.size = size;
-        if(size == 0){
+        if (size == 0) {
             (OrderBookBidStorage.getInstance()).findNewBestBid();
         }
     }
