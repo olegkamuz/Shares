@@ -39,10 +39,25 @@ public class OrderBookBid implements OrderBook {
     @Override
     public void setSize(int size) {
         this.size = size;
+        if(size == 0){
+            (OrderBookBidStorage.getInstance()).findNewBestBid();
+        }
+    }
+
+    @Override
+    public void setNewBest(int price, int size) {
+        this.price = price;
+        this.size = size;
     }
 
     @Override
     public int getSize() {
         return size;
+    }
+
+    @Override
+    public void resetBest() {
+        this.price = -1;
+        this.size = -1;
     }
 }

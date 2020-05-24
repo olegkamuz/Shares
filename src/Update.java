@@ -5,7 +5,11 @@ public class Update implements FindCriteria {
     private int price = -1;
     private int size = -1;
     private String type = "";
-    private OrderBookStorage orderBookStorage = OrderBookStorage.getInstance();
+    private OrderBookBidStorage orderBookBidStorage = OrderBookBidStorage.getInstance();
+    private OrderBookAskStorage orderBookAskStorage = OrderBookAskStorage.getInstance();
+    private OrderBookSpreadStorage orderBookSpreadStorage = OrderBookSpreadStorage.getInstance();
+    private OrderBookAsk orderBookAsk = OrderBookAsk.getInstance();
+    private OrderBookBid orderBookBid = OrderBookBid.getInstance();
     private Update(){}
     public static Update getInstance() {
         return instance;
@@ -31,27 +35,15 @@ public class Update implements FindCriteria {
     }
     private void update() {
         if(type.equals("bid")){
-            saveToOrderBookBid();
-            orderBookStorage.add(price,size);
+            orderBookBid.setPriceAndSize(price, size);
+            orderBookBidStorage.add(price,size);
         }
         if(type.equals("ask")){
-            saveToOrderBookAsk();
-            saveToOrderBookStorage();
+            orderBookAsk.setPriceAndSize(price, size);
+            orderBookAskStorage.add(price,size);
         }
         if(type.equals("spread")){
-            saveToOrderBookStorage();
+            orderBookSpreadStorage.add(price,size);
         }
-    }
-
-    private void saveToOrderBookStorage() {
-        orderBookStorage.add(price,size);
-    }
-
-    private void saveToOrderBookAsk() {
-        (OrderBookAsk.getInstance()).setPriceAndSize(price, size);
-    }
-
-    private void saveToOrderBookBid() {
-        (OrderBookBid.getInstance()).setPriceAndSize(price, size);
     }
 }

@@ -14,7 +14,7 @@ public class Query implements FindCriteria {
     }
 
     @Override
-    public void findCriteria(String line) {
+    public void findCriteria(String line) { // todo long to private
         Scanner s1 = new Scanner(line);
         queryAction = s1.findInLine("(best_bid|best_ask|size)");
         if (queryAction.equals("best_bid")) {
@@ -34,8 +34,14 @@ public class Query implements FindCriteria {
                 }
             }
             s2.close();
-            if((OrderBookStorage.getInstance()).getSizeAtPrice(price) != null) {
-                writeToOutputFile((OrderBookStorage.getInstance()).getSizeAtPrice(price));
+            if((OrderBookBidStorage.getInstance()).getSizeAtPrice(price) != null) {
+                writeToOutputFile((OrderBookBidStorage.getInstance()).getSizeAtPrice(price));
+            }
+            if((OrderBookAskStorage.getInstance()).getSizeAtPrice(price) != null) {
+                writeToOutputFile((OrderBookAskStorage.getInstance()).getSizeAtPrice(price));
+            }
+            if((OrderBookSpreadStorage.getInstance()).getSizeAtPrice(price) != null) {
+                writeToOutputFile((OrderBookSpreadStorage.getInstance()).getSizeAtPrice(price));
             }
         }
     }

@@ -15,9 +15,13 @@ public class Main {
         try {
 //            FileInputStream fis = new FileInputStream("input.txt");
             FileInputStream fis = new FileInputStream("inputRandom.txt");
+//            FileInputStream fis = new FileInputStream("inputSpecialCase.txt");
             Scanner sc = new Scanner(fis);
             while (sc.hasNextLine()) {
-                findAction(sc.nextLine());
+                String nextLine = sc.nextLine();
+                if(!nextLine.isEmpty()){
+                    findAction(nextLine);
+                }
             }
             sc.close();
             (OutputFileOrganizer.getInstance()).createOutputFile();
@@ -30,15 +34,14 @@ public class Main {
         Scanner s1 = new Scanner(line);
         String action = s1.findInLine("(u|q|o)");
         s1.close();
-        Dispatcher fi = new Dispatcher();
-        if (action.equals("u")) {
-            fi.doAction("u", line);
+        if(action.equals("u")){
+            (Update.getInstance()).findCriteria(line);
         }
-        if (action.equals("q")) {
-            fi.doAction("q", line);
+        if (action.equals("q")){
+            (Query.getInstance()).findCriteria(line);
         }
-        if (action.equals("o")) {
-            fi.doAction("o", line);
+        if(action.equals("o")){
+            (Order.getInstance()).findCriteria(line);
         }
     }
 }

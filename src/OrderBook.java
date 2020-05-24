@@ -4,5 +4,10 @@ public interface OrderBook {
     int getPrice();
     void setPrice(int price);
     void setSize(int size);
+
+    void setNewBest(int price, int size);
+
     int getSize();
+
+    void resetBest();
 }

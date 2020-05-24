@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class RandomInput {
     public static int U = 1;
     public static int Q = 2;
@@ -10,7 +8,7 @@ public class RandomInput {
         String[] types = {"bid","ask","spread"};
         String[] queries = {"best_bid","best_ask","size"};
         String[] orders = {"buy", "sell"};
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 200000; i++) {
             int randomAction = (int)(Math.round(Math.random()*2));
             int randomType = (int)(Math.round(Math.random()*2));
             int randomPrice = (int)(Math.round(Math.random()*100));

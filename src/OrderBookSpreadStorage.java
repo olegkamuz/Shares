@@ -1,14 +1,14 @@
 import java.util.HashMap;
 
-public class OrderBookStorage {
+public class OrderBookSpreadStorage {
 
-    private static OrderBookStorage instance = new OrderBookStorage();
+    private static OrderBookSpreadStorage instance = new OrderBookSpreadStorage();
     private HashMap<Integer, Integer> orders = new HashMap<Integer, Integer>();
 
-    private OrderBookStorage() {
+    private OrderBookSpreadStorage() {
     }
 
-    public static OrderBookStorage getInstance() {
+    public static OrderBookSpreadStorage getInstance() {
         return instance;
     }
 

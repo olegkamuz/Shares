@@ -24,6 +24,9 @@ public class OrderBookAsk implements OrderBook{
     @Override
     public void setSize(int size) {
         this.size = size;
+        if(size == 0){
+            (OrderBookAskStorage.getInstance()).findNewBestAsk();
+        }
     }
     @Override
     public void setPriceAndSize(int price, int size) {
@@ -37,7 +40,18 @@ public class OrderBookAsk implements OrderBook{
         }
     }
     @Override
+    public void setNewBest(int price, int size) {
+        this.price = price;
+        this.size = size;
+    }
+    @Override
     public int getSize() {
         return size;
+    }
+
+    @Override
+    public void resetBest() {
+        this.price = -1;
+        this.size = -1;
     }
 }
